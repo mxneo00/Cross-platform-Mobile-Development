@@ -1,4 +1,4 @@
-***STYLING METHODS
+**STYLING METHODS     
 {/* Inline Styling */}     
 <Text style={{ fontSize: 12, color: 'blue'}}>Inline</Text>     
 {/* Style Array - combines multiple styles */}     
