@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  const isHighlighted = true;
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to My App</Text>
@@ -10,6 +12,14 @@ export default function App() {
         This is a simple React Native application built with Expo. 
         You can customize this template to create your own amazing app.
       </Text>
+      {/* Inline Styling */}
+      <Text style={{ fontSize: 12, color: 'blue'}}>Inline</Text>
+      {/* Style Array - combines multiple styles */}
+      <Text style={[styles.text, styles.bold]}>Style Array</Text>
+      {/* Conditional Styling */}
+      <Text style={{ color: isHighlighted ? 'red' : 'black' }}>Conditional Styling</Text>
+      {/* Override with inline */}
+      <Text style={[styles.body, { fontSize: 20 }]}>Override with inline</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -38,5 +48,12 @@ const styles = StyleSheet.create({
     color: '#888',
     textAlign: 'center',
     lineHeight: 22,
+  },
+  text: {
+    fontSize: 16,
+    color: '#444',
+  },
+  bold: {
+    fontWeight: 'bold',
   },
 });
