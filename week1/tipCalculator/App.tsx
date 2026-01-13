@@ -49,6 +49,14 @@ export default function App() {
         {/* Display calculated total amount */}
         <Text>${totalAmount}</Text>
       </View>
+      {/* Reset Button */}
+      <View style={styles.buttonContainer}>
+        <Button title="Reset" onPress={() => {
+          setBillAmount('');
+          setTipPercentage('');
+          setTotalAmount('0.00');
+        }} />
+      </View>
       <StatusBar style="auto" />
     </View>
   );
