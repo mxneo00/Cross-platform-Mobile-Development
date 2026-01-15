@@ -12,6 +12,19 @@ This app allows users to write, save, and view journal entries using a simple bo
 - Simple and clean user interface
 - Works on both **iOS** and **Android**
 
+## Future Changes/Additions
+
+- Automatically switch to Journal screen after a new journal entry has been submitted
+- Better design
+- Add dates to entries
+- Delete entries
+- Edit entries
+- More Homepage features
+-- Number of current entries
+- Individual entry view
+- Add photos to entries
+- Categories
+
 ## Other Notes
 
 - Currently experiencing errors upon app launch through both expo go and Android emulator (expected dynamic type 'boolean', but had type 'string' & java.lang.String cannot be cast to java.lang.Boolean)    
