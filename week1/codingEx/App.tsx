@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -19,30 +19,41 @@ const Tab = createBottomTabNavigator<RootParamList>();
 
 function HomeTab() {
   return(
-  <View style={styles.container}>
-    <Text style={styles.title}>Welcome to your Journal!</Text>
-    <Text>Use the tabs below to navigate.</Text>
-  </View>
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome to your Journal!</Text>
+      <Text>Use the tabs below to navigate.</Text>
+    </View>
   );
 }
 
 function JournalTab({entries}: {entries: Entry[]}) {
   return (
-    <View style={styles.entryContainer}>
+    <ScrollView contentContainerStyle={styles.entryContainer}>
       <Text style={styles.title}>Journal Entries</Text>
-      {entries.length === 0 && <Text style={styles.text}>No entries yet.</Text>}
-      {entries.map((entry, index)=> (
+      {entries.length === 0 && (
+        <Text style={styles.text}>No entries yet.</Text>
+      )}
+      {entries.map((entry, index) => (
         <View key={entry.id} style={styles.entryItem}>
           <Text style={styles.entryLabel}>Entry {index + 1}:</Text>
           <Text>{entry.content}</Text>
         </View>
       ))}
-    </View>
+    </ScrollView>
   );
 }
 
 function NewEntryTab({entries, setEntries}: {entries: Entry[], setEntries: React.Dispatch<React.SetStateAction<Entry[]>>}) {
-  const [text, setText] = React.useState('');
+  const [text, setText] = useState('');
+
+  const handleSave = () => {
+    if (text.trim() === '') return;
+    setEntries(prev => [
+      ...prev,
+      { id: Date.now().toString(), content: text },
+    ]);
+    setText('');
+  };
 
   return (
     <View style={styles.entryContainer}>
@@ -50,18 +61,15 @@ function NewEntryTab({entries, setEntries}: {entries: Entry[], setEntries: React
 
       <TextInput
         placeholder="Write something..."
-        multiline={true}
         value={text}
         onChangeText={setText}
+        multiline={true}
         style={styles.input}
       />
 
-      <Button title="Save Entry" onPress={() => {
-        if (text.trim() !== '') {
-          setEntries(prevEntries => [...prevEntries, { id: Date.now().toString(), content: text }]);
-          setText('');
-        }
-      }} />
+      <View style={styles.buttonContainer}>
+        <Button title="Save Entry" onPress={handleSave} />
+      </View>
     </View>
   );
 }
@@ -78,12 +86,7 @@ export default function App() {
           {() => <JournalTab entries={entries} />}
         </Tab.Screen>
         <Tab.Screen name="NewEntry">
-          {() => (
-            <NewEntryTab
-              entries={entries}
-              setEntries={setEntries}
-            />
-          )}
+          {() => (<NewEntryTab entries={entries} setEntries={setEntries}/>)}
         </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
@@ -95,30 +98,33 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
     padding: 16,
+    backgroundColor: '#fff',
   },
   entryContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flexGrow: 1,
     padding: 16,
+    backgroundColor: '#fff',
   },
   title: {
     fontSize: 26,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 12,
   },
   text: {
     fontSize: 16,
     color: '#666',
   },
   input: {
-  height: 150,
-  borderWidth: 1,
-  borderColor: '#ccc',
-  borderRadius: 8,
-  padding: 12,
-  marginBottom: 16,
+    height: 150,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
+  },
+  buttonContainer: {
+    marginTop: 8,
   },
   entryItem: {
     marginBottom: 12,
