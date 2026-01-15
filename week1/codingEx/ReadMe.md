@@ -14,4 +14,5 @@ This app allows users to write, save, and view journal entries using a simple bo
 
 ## Other Notes
 
-- Currently experiencing errors upon app launch through both expo go and Android emulator (expected dynamic type 'boolean', but had type 'string' & java.lang.String cannot be cast to java.lang.Boolean)
+- Currently experiencing errors upon app launch through both expo go and Android emulator (expected dynamic type 'boolean', but had type 'string' & java.lang.String cannot be cast to java.lang.Boolean)    
+- A Screenshot of the Android emulator error can be found in the repository called boolError.png
