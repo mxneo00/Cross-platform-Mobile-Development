@@ -19,4 +19,5 @@ This app allows users to write, save, and view journal entries using a simple bo
 
 - IMPORTANT UPDATE: Utilizing the JSdebugger allowed me to finally fix the main cause of the above error. Explaination below:    
 -- Upgraded react-native-screens and react-navigation to latest versions
+-- Exact terminal line: npm install @react-navigation/native @react-navigation/bottom-tabs react-native-screens react-native-safe-area-context
 -- Added enableScreens(false)
