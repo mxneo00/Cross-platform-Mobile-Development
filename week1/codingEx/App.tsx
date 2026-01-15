@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { enableScreens } from 'react-native-screens';
+
+enableScreens(false); // call this before NavigationContainer, Fixes Building Errors
 
 type Entry = {
   id: string;
@@ -74,7 +77,6 @@ function NewEntryTab({entries, setEntries}: {entries: Entry[], setEntries: React
     </View>
   );
 }
-
 
 export default function App() {
   const [entries, setEntries] = useState<Entry[]>([]);
