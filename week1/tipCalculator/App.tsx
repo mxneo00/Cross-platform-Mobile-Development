@@ -12,6 +12,7 @@ export default function App() {
     const bill = parseFloat(billAmount);
     const tip = parseFloat(tipPercentage);
     const total = bill + (bill * tip /100);
+  
     setTotalAmount(total.toFixed(2));
   }
   return (
