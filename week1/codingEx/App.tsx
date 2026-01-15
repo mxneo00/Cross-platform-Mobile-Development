@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -64,6 +63,8 @@ function NewEntryTab({entries, setEntries}: {entries: Entry[], setEntries: React
         value={text}
         onChangeText={setText}
         multiline={true}
+        editable={true}      // default is true, explicit boolean
+        selectTextOnFocus={false}
         style={styles.input}
       />
 
